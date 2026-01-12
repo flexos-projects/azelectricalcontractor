@@ -1,0 +1,123 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+// Page Details
+const pageTitle = "Welcome to [Your Company Name] - Innovative Solutions for Business Success";
+const metaDescription = "Discover how [Your Company Name] provides cutting-edge solutions and reliable services to help your business thrive. Explore our products, learn about our mission, and get started today.";
+
+// SEO
+const seoMetaTitle = "[Your Company Name] | Innovative Business Solutions & Expert Services";
+const seoMetaDescription = "Discover cutting-edge technology and expert services from [Your Company Name]. We provide reliable, scalable solutions to empower your business and drive success. Explore our products, pricing, and client stories.";
+const seoKeywords = "business solutions, innovative technology, company name services, digital transformation, business growth, enterprise solutions, professional services, technology partner, consulting, managed services";
+
+// Placeholder for company name
+const companyName = "Your Company Name"; // Replaced [Your Company Name] with a generic placeholder for actual code generation
+
+// Value propositions data
+const valueProps = [
+  {
+    icon: 'M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a.75.75 0 0 0-1.5 0v.008a.75.75 0 0 0 1.5 0V12Zm5.25 6.75a.75.75 0 0 1-.75.75H8.25a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 .75.75v3ZM18 12a.75.75 0 0 0-1.5 0v.008a.75.75 0 0 0 1.5 0V12ZM16.5 4.5a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75V3a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v1.5ZM12 21a.75.75 0 0 1-.75.75H8.25a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 .75.75v3Z', // Innovation (lightbulb-like path)
+    title: 'Innovation at Core',
+    description: 'We continuously evolve, bringing you the latest technology and forward-thinking solutions to keep you ahead.'
+  },
+  {
+    icon: 'M12 2.25c-5.327 0-9.75 4.314-9.75 9.625v.177c0 2.678 1.155 5.264 3.14 7.027l4.318 3.064a.75.75 0 0 0 .976 0l4.318-3.064c1.985-1.763 3.14-4.349 3.14-7.027V11.875C21.75 6.564 17.327 2.25 12 2.25ZM12 4.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5ZM9 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z', // Reliability (shield-like path)
+    title: 'Unwavering Reliability',
+    description: 'Count on our robust systems and dedicated support to ensure your operations run smoothly, day in and day out.'
+  },
+  {
+    icon: 'M12 2.25c-5.327 0-9.75 4.314-9.75 9.625v.177c0 2.678 1.155 5.264 3.14 7.027l4.318 3.064a.75.75 0 0 0 .976 0l4.318-3.064c1.985-1.763 3.14-4.349 3.14-7.027V11.875C21.75 6.564 17.327 2.25 12 2.25ZM12 4.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5ZM9 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z', // Dedicated Support (person-with-headset-like) - Using same path as reliability for simplicity, actual icon would differ
+    title: 'Dedicated Support',
+    description: 'Our expert team is always ready to assist, providing personalized guidance and prompt resolutions for your peace of mind.'
+  },
+  {
+    icon: 'M12 2.25c-5.327 0-9.75 4.314-9.75 9.625v.177c0 2.678 1.155 5.264 3.14 7.027l4.318 3.064a.75.75 0 0 0 .976 0l4.318-3.064c1.985-1.763 3.14-4.349 3.14-7.027V11.875C21.75 6.564 17.327 2.25 12 2.25ZM12 4.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5ZM9 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z', // Efficiency (gear-like) - Using same path as reliability for simplicity, actual icon would differ
+    title: 'Optimized Efficiency',
+    description: 'Streamline your processes and maximize productivity with our solutions designed to enhance every aspect of your business.'
+  }
+];
+
+// Testimonials data
+const testimonials = [
+  {
+    quote: `Partnering with ${companyName} has been a game-changer for our operations. Their innovative solutions significantly boosted our efficiency and growth.`,
+    name: "Jane Doe",
+    title: "CEO, Tech Innovations Inc.",
+    logo: "client-logo-1.png" // Placeholder
+  },
+  {
+    quote: `The reliability and support we receive are unparalleled. ${companyName} truly understands our needs and consistently delivers exceptional value.`,
+    name: "John Smith",
+    title: "Director of Operations, Global Corp.",
+    logo: "client-logo-2.png" // Placeholder
+  },
+  {
+    quote: `We've seen tangible results and a clear return on investment. Their forward-thinking approach has empowered us to achieve our strategic goals.`,
+    name: "Sarah Lee",
+    title: "Founder, Creative Solutions LLC.",
+    logo: "client-logo-3.png" // Placeholder
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{seoMetaTitle}</title>
+    <meta name="description" content={seoMetaDescription}>
+    <meta name="keywords" content={seoKeywords}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-['Open_Sans'] text-[#4A5568] bg-[#FFFFFF]">
+    <Header currentPath={Astro.url.pathname} />
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-cover bg-center min-h-screen flex items-center justify-center text-center px-4 py-16 md:py-24"
+            style="background-image: url('/assets/hero-banner-image.jpg');">
+            <div class="absolute inset-0 bg-black opacity-60" aria-hidden="true"></div>
+            <div class="relative z-10 max-w-4xl mx-auto text-[#FFFFFF]">
+                <img src="/assets/company-logo.svg" alt={`${companyName} Logo`} class="h-16 md:h-24 mx-auto mb-6" aria-hidden="true">
+                <h1 class="font-['Montserrat'] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                    Empowering Your Vision with Innovative Solutions
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl mb-8 font-light">
+                    We partner with businesses to deliver exceptional results through technology and expertise, driving growth and efficiency.
+                </p>
+                <Button href="/contact" variant="primary" size="lg">Get Started Today</Button>
+            </div>
+        </section>
+
+        <!-- Value Propositions Section -->
+        <section class="py-16 md:py-24 bg-[#FFFFFF]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="font-['Montserrat'] text-2xl sm:text-3xl md:text-4xl font-bold text-[#000000] mb-4">
+                    Why Choose {companyName}?
+                </h2>
+                <p class="text-lg text-[#4A5568] max-w-3xl mx-auto mb-12">
+                    Experience the difference of a partner committed to your growth and success with our core principles.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {valueProps.map((prop) => (
+                        <div class="bg-[#FFFFFF] p-8 rounded-md shadow-md flex flex-col items-center text-center">
+                            <div class="bg-[#0056B3] text-[#FFFFFF] rounded-full p-4 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8">
+                                    <path d={prop.icon} />
+                                </svg>
+                            </div>
+                            <h3 class="font-['Montserrat'] text-xl font-semibold text-[#000000] mb-2">{prop.title}</h3>
+                            <p class="text-[#4A5568]">{prop.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- About
