@@ -1,0 +1,71 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  class?: string; // Allows custom classes to be passed
+  [key: string]: any; // Allows other standard HTML attributes like aria-label, disabled, onClick etc.
+}
+
+const { variant = 'primary', size = 'md', href, class: customClass, ...attrs } = Astro.props;
+
+const baseClasses = `
+  font-['Open_Sans']
+  font-medium
+  rounded-md
+  shadow-md
+  transition-colors
+  duration-200
+  ease-in-out
+  inline-flex
+  items-center
+  justify-center
+  whitespace-nowrap
+  focus:outline-none
+  focus:ring-2
+  focus:ring-offset-2
+  focus:ring-offset-[#FFFFFF]
+`;
+
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-6 py-3 text-lg',
+}[size];
+
+const variantClasses = {
+  primary: `
+    bg-[#0056B3]
+    text-white
+    hover:bg-[#004080]
+    focus:ring-[#0056B3]
+  `,
+  secondary: `
+    bg-[#008080]
+    text-white
+    hover:bg-[#006666]
+    focus:ring-[#008080]
+  `,
+  outline: `
+    border
+    border-[#0056B3]
+    text-[#0056B3]
+    bg-transparent
+    hover:bg-[#0056B3]
+    hover:text-white
+    focus:ring-[#0056B3]
+  `,
+}[variant];
+
+const combinedClasses = `${baseClasses} ${sizeClasses} ${variantClasses} ${customClass || ''}`;
+---
+
+{href ? (
+  <a href={href} class={combinedClasses} {...attrs}>
+    <slot />
+  </a>
+) : (
+  <button type="button" class={combinedClasses} {...attrs}>
+    <slot />
+  </button>
+)}
