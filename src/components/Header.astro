@@ -1,0 +1,101 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Astro Reference', href: '/astro' },
+  { name: 'Tailwind Reference', href: '/tailwind' },
+  { name: 'Components Reference', href: '/components' },
+];
+---
+
+<header class="bg-[#FFFFFF] shadow-md font-['Open_Sans'] sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <div class="flex-shrink-0">
+        <a href="/" class="text-[#000000] font-['Montserrat'] text-2xl font-bold tracking-tight" aria-label="MySite Home">
+          MySite
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block" aria-label="Main navigation">
+        <ul class="flex space-x-8">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  "text-[#4A5568] hover:text-[#0056B3] text-lg transition-colors duration-200",
+                  { "text-[#0056B3] font-semibold": currentPath === link.href }
+                ]}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-[#4A5568] hover:text-[#0056B3] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0056B3]" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav class="md:hidden hidden bg-[#FFFFFF]" id="mobile-menu" aria-label="Mobile navigation">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200",
+            "text-[#4A5568] hover:bg-gray-100 hover:text-[#0056B3]",
+            { "bg-gray-100 text-[#0056B3] font-semibold": currentPath === link.href }
+          ]}
+          aria-current={currentPath === link.href ? "page" : undefined}
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  const button = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (button && mobileMenu) {
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+
+      // Toggle SVG icons
+      const menuIcon = button.querySelector('svg:first-child');
+      const closeIcon = button.querySelector('svg:last-child');
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      }
+    });
+  }
+</script>
